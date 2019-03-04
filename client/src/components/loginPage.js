@@ -32,7 +32,6 @@ class HKloginPage extends React.Component{
                 postData[formElements[i].name]=formElements[i].value;
             }
         
-        console.log(postData);
         if(!postData.username || !postData.password){
             alert("Please enter username and password")
         }else if(postData.confirmpassword !==undefined && postData.password !==postData.confirmpassword){
@@ -91,14 +90,14 @@ const mapStateToProps =(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return {
       fetchUserDetails:(postData)=>{
-        fetch("http://localhost:8081/loginUser",{
+        fetch("/loginUser",{
+        //fetch("http://localhost:8081/loginUser",{
             method:"POST",
             headers:{
                 'Content-Type': 'application/json'
               },
             body:JSON.stringify(postData)
         }).then(res=>res.json()).then((res)=>{
-            console.log(res);
             dispatch({type:"FETCH_USER",value:res})
         });
       }

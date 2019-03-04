@@ -2,5 +2,5 @@ applications:
 - name: chatbotWithWebsocket
   command: npm start
   path: .
-  memory: 512M
+  memory: 128M
   instances: 1

@@ -5,13 +5,14 @@ const bodyParser=require("body-parser");
 const enableWS=require("express-ws");
 enableWS(app);
 
-
 const mongojs = require('mongojs');
-//var url = "mongodb://vivek1395068@gmail.com:Vivek108#@ds153974.mlab.com:53974/react-chatbot";
 var db=mongojs("mongodb://vivek108:SSvv1234##@ds153974.mlab.com:53974/react-chatbot",["users"])
 var chatObj={};
 var users={
     
+};
+var userChatStatus={
+
 }
 
 app.use(bodyParser.json());
@@ -50,17 +51,48 @@ app.get("/getDataFromDb",(req,res,next)=>{
 app.ws('/echo', (ws, req) => {
     ws.on('message', msg => {
         var message = JSON.parse(msg);
-        if(message.id){
+        if(message.type==="sendLoginId"){
             users[message.id]=ws;
-            users[message.id].send(msg)
-        }else{
-            users[message.targetUser].send(msg)
+            users[message.id].loggingInOnlineState=message.loggingInOnlineState;
+            for(x in userChatStatus){
+                if(userChatStatus[x].targetUser===message.id){
+                    users[userChatStatus[x].sourceUser].send(JSON.stringify({
+                        type:"checkOnlineStatus",
+                        targetUserLoggedInStatus:true
+                    }))
+                }    
+            }
+            //userChatStatus[message.id]=message;
+        }else if(message.type==="sendMessage"){
+            users[message.targetUser].send(msg);
+            userChatStatus[message.id]=message;
+        }else if(message.type==="checkOnlineStatus"){
+            users[message.sourceUser].send(JSON.stringify({
+                type:"checkOnlineStatus",
+                targetUserLoggedInStatus:users[message.targetUser]?users[message.targetUser].loggingInOnlineState:false
+            }));
+            userChatStatus[message.sourceUser]=message;
         }
-        
     });
 
     ws.on('close', (data) => {
-        console.log('WebSocket was closed',data)
+        var user=null
+        for(x in users){
+            if(users[x]===ws){
+                users[x].loggingInOnlineState=false;
+                user=x
+            };
+        };
+        //console.log(users.keys().length,userChatStatus.keys().length)
+        for(x in userChatStatus){
+            //console.log(user,userChatStatus[x].targetUser);
+            if(userChatStatus[x].targetUser===user){
+                users[userChatStatus[x].sourceUser].send(JSON.stringify({
+                    type:"checkOnlineStatus",
+                    targetUserLoggedInStatus:false
+                }))
+            }
+        }
     });
 })
 
@@ -73,41 +105,6 @@ app.get("/fetchAllUsers",(req,res,next)=>{
     })
 })
 
-/* app.put("/getChat",(req,res,next)=>{
-    var resObj=req.body;
-
-    //console.log(resObj)
-    if(chatObj[resObj.sourceUser+resObj.targetUser]){
-        chatObj[resObj.sourceUser+resObj.targetUser].chatstatement+="<p style='justify-self: left'>"+resObj.chatstatement+"</p>"
-        chatObj[resObj.targetUser+resObj.sourceUser].chatstatement+="<p style='justify-self: right'>"+resObj.chatstatement+"</p>"
-    }else{
-
-        chatObj[resObj.sourceUser+resObj.targetUser]={...resObj}
-        chatObj[resObj.targetUser+resObj.sourceUser]={...resObj};
-        chatObj[resObj.sourceUser+resObj.targetUser].chatstatement="<p style='justify-self: left'>"+resObj.chatstatement+"</p>"
-        chatObj[resObj.targetUser+resObj.sourceUser].chatstatement="<p style='justify-self: right'>"+resObj.chatstatement+"</p>"
-    }
-    
-    res.json({
-        status:"Messsage sent successfully"
-    })
-
-}); */
-
-/* app.post("/fetchChat",(req,res,next)=>{
-    //console.log(req.body.reqchat);
-    //console.log(chatObj);
-    if(chatObj[req.body.reqchat])
-    {
-        res.json(chatObj[req.body.reqchat]);
-    }
-    else{
-        res.json({
-            chatstatement:""
-        })
-    }
-}) */
-
 app.post("/loginUser",(req,res,next)=>{
     var request=req.body;
     if(request.type==="signin"){
@@ -119,7 +116,7 @@ app.post("/loginUser",(req,res,next)=>{
             if(user[0]._username===request.username && request.password===user[0]._password){
                 userDetails.username=request.username;
                 userDetails.logInState=true;
-                userDetails.id=user[0]._id
+                userDetails.id=user[0]._id;
                 res.json(userDetails)
             }else{
                 userDetails.username="unauthorized user";

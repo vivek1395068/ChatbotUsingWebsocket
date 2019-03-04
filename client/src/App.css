@@ -40,8 +40,11 @@ header{
 }
 
 #chatInput{
-    border: 1px solid blue;
+    border: none;
     border-radius: 16px;
+    height: 88%;
+    width: 96%;
+    background-color: #fff;
 }
 
 #loginPage{
