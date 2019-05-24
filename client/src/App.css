@@ -6,9 +6,9 @@
     grid-gap:4px;
 }
 
-.App *{
+/* .App *{
     background-color: #eee
-}
+} */
 
 header{
     display: grid;
@@ -70,6 +70,7 @@ header{
     width: 32%;
     height: 216px;
     grid-template-rows: 54px 100px;
+    min-width: 216px;
   }
 
   /* The Close Button */
@@ -91,6 +92,6 @@ header{
       justify-self: center;
       align-self: flex-start;
       display: grid;
-      grid-template-columns: 154px 134px;
+      grid-template-columns: 50% 50%;
       grid-gap: 4px;
   }
