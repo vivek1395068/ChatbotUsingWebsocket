@@ -39,8 +39,8 @@ class ChatScreen extends React.Component{
     }
 
     setupWebsocketConnection(data){
-        this.connection=new WebSocket('wss://'+window.location.host+'/echo');
-        //this.connection=new WebSocket('ws://localhost:8081/echo');
+        this.connection=new WebSocket('ws://'+window.location.host+'/echo');
+        //this.connection=new WebSocket('wss://localhost:8081/echo');
         this.connection.onopen =  (msg)=> {
             // this.connection is opened and ready to use;
             this.connection.send(data);
@@ -153,12 +153,14 @@ class ChatScreen extends React.Component{
             }
         },
         ()=>{
-            this.connection.send(JSON.stringify({
-                type:"checkOnlineStatus",
-                targetUser:this.state.targetUser,
-                sourceUser:this.props.id
-            }))
-        });
+            if(this.connection){
+                this.connection.send(JSON.stringify({
+                    type:"checkOnlineStatus",
+                    targetUser:this.state.targetUser,
+                    sourceUser:this.props.id
+                }))
+            }
+        }); 
     }
     
     render(){
@@ -168,7 +170,7 @@ class ChatScreen extends React.Component{
                     <div style={{gridRow:"1/4",gridColumn:"1/2"}} ><img src={myImg} alt="Vivek_pic" style={{width:"100%",height:"100%"}}></img></div>
                     <span style={{alignSelf:"center",justifySelf:"center",gridRow:"1/3",gridColumn:"2/3"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span>
                     
-                    <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center"}}>
+                    <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center"}}>
                         <span style={{fontSize:"24px",color:"blue",marginRight:"16px"}} className ="fa fa-user" aria-hidden="true" onClick={this.onLoginIconClick.bind(this)}>
 
                         </span>
@@ -179,7 +181,7 @@ class ChatScreen extends React.Component{
                     }
                     </span>
                     <input style={{gridRow:"2/3",gridColumn:"3/4"}}></input>
-                    <span style={{gridRow:"3/4",gridColumn:"2/3",border:"1px solid blue",display:"flex",alignItems:"center"}}>
+                    <span style={{gridRow:"3/4",gridColumn:"2/3",border:"1px solid blue",display:"flex",alignItems:"center",minHeight: "32px"}}>
                         <span>{this.state.selectedUser._username}</span>{this.state.selectedUser?<div style={{height:"8px",width:"8px",backgroundColor:this.state.targetUserLoggedInStatus?"green":"red",borderRadius:"50%"}}></div>:""}
                     </span>
                     <button style={{gridRow:"3/4",gridColumn:"3/4",border:"1px solid blue"}}>Search</button>
@@ -193,13 +195,20 @@ class ChatScreen extends React.Component{
                 </div>
                 <HKloginPage></HKloginPage>
                 <div id="chatArea">
+                    <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
+                        {
+                            this.props.allUsers?this.props.allUsers.map((user)=>{
+                                return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
+                            }):""
+                        }
+                    </div>
                     {this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]?
                         this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]:""}
                 </div>
                 {/* <div id="data"></div> */}
-                <div style={{display:"flex",alignItems:"center",border:"1px solid blue"}}>
+                <div style={{display:"flex",alignItems:"center",border:"1px solid blue",gridRow:"3/3"}}>
                     <input id="chatInput" onKeyUp={this.onSubmitChat.bind(this)}/>
-                    <span style={{height:"100%",cursor:"pointer",width:"4%",fontSize:"21px"}} onClick={this.onClickSubmit.bind(this)}>➢</span>
+                    <span style={{height:"100%",cursor:"pointer",width:"4%",fontSize:"21px"}} onClick={this.onClickSubmit.bind(this)}>&#10148;</span>
                 </div>
             </React.Fragment>
         )

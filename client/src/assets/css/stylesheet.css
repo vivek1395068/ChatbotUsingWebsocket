@@ -10,3 +10,22 @@
 #userList p{
     background-color: #ddd
 }
+
+#mobileviewUL{
+    position: relative;
+    display: none;
+    height: 64px;
+    width: 100%;
+    border: 1px solid blue;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 720px) {
+    #mobileviewUL{
+        display: block;
+    }
+
+    #userList{
+        display: none
+    }
+  }
