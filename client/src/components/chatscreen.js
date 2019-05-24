@@ -167,7 +167,9 @@ class ChatScreen extends React.Component{
         return(
             <React.Fragment>
                 <header>
-                    <div style={{gridRow:"1/4",gridColumn:"1/2"}} ><img src={myImg} alt="Vivek_pic" style={{width:"100%",height:"100%"}}></img></div>
+                    <div style={{gridRow:"1/4",gridColumn:"1/2"}} >
+                        <img src={myImg} alt="Vivek_pic"></img>
+                    </div>
                     <span style={{alignSelf:"center",justifySelf:"center",gridRow:"1/3",gridColumn:"2/3"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span>
                     
                     <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center"}}>
@@ -194,14 +196,14 @@ class ChatScreen extends React.Component{
                     }
                 </div>
                 <HKloginPage></HKloginPage>
-                <div id="chatArea">
-                    <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
+                <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
                         {
                             this.props.allUsers?this.props.allUsers.map((user)=>{
-                                return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
+                                return <span key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue",marginLeft:"8px"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></span>
                             }):""
                         }
                     </div>
+                <div id="chatArea">
                     {this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]?
                         this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]:""}
                 </div>

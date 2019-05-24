@@ -4,6 +4,7 @@
     grid-template-columns: 0.4fr 0.2fr;
     grid-template-rows: 164px 400px 32px;
     grid-gap:4px;
+    min-width: 264px;
 }
 
 .App *{
@@ -18,6 +19,11 @@ header{
     text-align: center;
     margin-top: 8%;
     overflow: auto;
+}
+
+header img{
+    height: 100%;
+    width: 100%
 }
 
 #chatArea{
@@ -98,9 +104,22 @@ header{
       grid-gap: 4px;
   }
 
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 600px) {
+    .App{
+        grid-template-columns: 1fr;
+        grid-template-rows: 264px 400px 32px;
+    }
+
     header{
         display: block;
         grid-template-columns: 1fr;
+    }
+
+    header img{
+        width: 24%;
+    }
+
+    #chatInput{
+        width: 88%
     }
   }
