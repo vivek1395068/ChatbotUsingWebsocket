@@ -182,7 +182,7 @@ class ChatScreen extends React.Component{
                             }):""
                         }
                     </div>
-                    <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"yellowgreen"}}>
                         <span style={{fontSize:"24px",color:"blue",marginRight:"16px"}} className ="fa fa-user" aria-hidden="true" onClick={this.onLoginIconClick.bind(this)}>
 
                         </span>
@@ -193,7 +193,7 @@ class ChatScreen extends React.Component{
                     }
                     </span>
                     {/* <input style={{gridRow:"2/3",gridColumn:"3/4"}}></input> */}
-                    <span style={{gridRow:"3/4",gridColumn:"2/3",border:"1px solid blue",display:"flex",alignItems:"center",minHeight: "32px"}}>
+                    <span id="selectedUser">
                         <span>{this.state.selectedUser._username}</span>{this.state.selectedUser?<div style={{height:"8px",width:"8px",backgroundColor:this.state.targetUserLoggedInStatus?"green":"red",borderRadius:"50%"}}></div>:""}
                     </span>
                     {/* <button style={{gridRow:"3/4",gridColumn:"3/4",border:"1px solid blue"}} onClick={this.onClickSearchUser.bind(this)}>Search</button> */}

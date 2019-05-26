@@ -20,6 +20,16 @@
     overflow: auto;
 }
 
+#selectedUser{
+    grid-row:3/4;
+    grid-column:2/3;
+    border:1px solid blue;
+    display:flex;
+    align-items:center;
+    min-height: 32px;
+    background-color:white;
+}
+
 @media only screen and (max-width: 600px) {
     #mobileviewUL{
         display: block;
@@ -27,5 +37,11 @@
 
     #userList{
         display: none
+    }
+
+    #selectedUser{
+        margin-top:16px;
+        width: 68%;
+        margin-left: 16%;
     }
   }
