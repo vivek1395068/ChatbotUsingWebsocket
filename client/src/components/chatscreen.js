@@ -167,6 +167,13 @@ class ChatScreen extends React.Component{
         return(
             <React.Fragment>
                 <header>
+                    <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
+                        {
+                            this.props.allUsers?this.props.allUsers.map((user)=>{
+                                return <span key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue",marginLeft:"8px"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></span>
+                            }):""
+                        }
+                    </div>
                     {<div style={{gridRow:"1/4",gridColumn:"1/2"}} >
                         <img src={myImg} alt="Vivek_pic"></img>
                     </div>}
@@ -196,13 +203,6 @@ class ChatScreen extends React.Component{
                     }
                 </div>
                 <HKloginPage></HKloginPage>
-                <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
-                        {
-                            this.props.allUsers?this.props.allUsers.map((user)=>{
-                                return <span key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue",marginLeft:"8px"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></span>
-                            }):""
-                        }
-                    </div>
                 <div id="chatArea">
                     {this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]?
                         this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]:""}

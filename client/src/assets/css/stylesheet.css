@@ -12,7 +12,7 @@
 }
 
 #mobileviewUL{
-    position: absolute;
+    position: relative;
     display: none;
     height: 64px;
     width: 100%;
