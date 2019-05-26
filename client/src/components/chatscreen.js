@@ -171,6 +171,10 @@ class ChatScreen extends React.Component{
         return(
             <React.Fragment>
                 <header>
+                {/* <div style={{gridRow:"1/4",gridColumn:"1/2"}} >
+                    <img src={myImg} alt="Vivek_pic"></img>
+                </div>
+                <span style={{alignSelf:"center",justifySelf:"center",gridRow:"1/3",gridColumn:"2/3"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span> */}
                     <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
                         {
                             this.props.allUsers?this.props.allUsers.map((user)=>{
@@ -202,10 +206,6 @@ class ChatScreen extends React.Component{
                     }
                 </div>
                 <HKloginPage></HKloginPage>
-                <div style={{position:"relative"}} >
-                    <img src={myImg} alt="Vivek_pic"></img>
-                </div>
-                <span style={{position:"relative"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span>
                 <div id="chatArea">
                     {this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]?
                         this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]:""}
