@@ -39,8 +39,8 @@ class ChatScreen extends React.Component{
     }
 
     setupWebsocketConnection(data){
-        this.connection=new WebSocket('ws://'+window.location.host+'/echo');
-        //this.connection=new WebSocket('wss://localhost:8081/echo');
+        this.connection=new WebSocket('wss://'+window.location.host+'/echo');
+        //this.connection=new WebSocket('ws://localhost:8081/echo');
         this.connection.onopen =  (msg)=> {
             // this.connection is opened and ready to use;
             this.connection.send(data);
