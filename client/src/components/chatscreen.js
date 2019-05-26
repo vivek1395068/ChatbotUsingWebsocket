@@ -167,10 +167,10 @@ class ChatScreen extends React.Component{
         return(
             <React.Fragment>
                 <header>
-                    <div style={{gridRow:"1/4",gridColumn:"1/2"}} >
+                    {/* <div style={{gridRow:"1/4",gridColumn:"1/2"}} >
                         <img src={myImg} alt="Vivek_pic"></img>
-                    </div>
-                    <span style={{alignSelf:"center",justifySelf:"center",gridRow:"1/3",gridColumn:"2/3"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span>
+                    </div> */}
+                    {/* <span style={{alignSelf:"center",justifySelf:"center",gridRow:"1/3",gridColumn:"2/3"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span> */}
                     
                     <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center"}}>
                         <span style={{fontSize:"24px",color:"blue",marginRight:"16px"}} className ="fa fa-user" aria-hidden="true" onClick={this.onLoginIconClick.bind(this)}>

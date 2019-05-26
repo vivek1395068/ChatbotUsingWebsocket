@@ -2,14 +2,14 @@
     display: grid;
     justify-content: center;
     grid-template-columns: 0.4fr 0.2fr;
-    grid-template-rows: 164px 400px 32px;
+    grid-template-rows: 164px 332px 32px;
     grid-gap:4px;
     min-width: 264px;
 }
 
-.App *{
+/* .App *{
     background-color: #eee
-}
+} */
 
 header{
     display: grid;
@@ -19,6 +19,7 @@ header{
     text-align: center;
     margin-top: 8%;
     overflow: auto;
+    background-color: yellow;
 }
 
 header img{
