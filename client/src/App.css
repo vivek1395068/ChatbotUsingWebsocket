@@ -33,7 +33,7 @@ header img{
     overflow: auto;
     grid-gap: 8px;
     align-content: flex-start;
-    grid-row: 2/3
+    grid-row: 2/3;
 }
 
 #chatArea p{
