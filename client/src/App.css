@@ -34,6 +34,7 @@ header img{
     grid-gap: 8px;
     align-content: flex-start;
     grid-row: 2/3;
+    background-color: #f8f67d;
 }
 
 #chatArea p{

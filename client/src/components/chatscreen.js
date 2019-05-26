@@ -210,7 +210,7 @@ class ChatScreen extends React.Component{
                     {this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]?
                         this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]:""}
                 </div>
-                <div style={{display:"flex",alignItems:"center",border:"1px solid blue",gridRow:"3/3"}}>
+                <div style={{display:"flex",alignItems:"center",border:"1px solid blue",gridRow:"3/3",backgroundColor:"blue"}}>
                     <input id="chatInput" onKeyUp={this.onSubmitChat.bind(this)}/>
                     <span style={{height:"100%",cursor:"pointer",width:"4%",fontSize:"21px"}} onClick={this.onClickSubmit.bind(this)}>&#10148;</span>
                 </div>
