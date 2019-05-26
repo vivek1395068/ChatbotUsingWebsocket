@@ -2,7 +2,7 @@
     display: grid;
     justify-content: center;
     grid-template-columns: 0.4fr 0.2fr;
-    grid-template-rows: 164px 332px 32px;
+    grid-template-rows: 264px 400px 32px;
     grid-gap:4px;
     min-width: 264px;
 }
@@ -108,7 +108,7 @@ header img{
   @media only screen and (max-width: 600px) {
     .App{
         grid-template-columns: 1fr;
-        grid-template-rows: 264px 400px 32px;
+        grid-template-rows: 264px 332px 32px;
     }
 
     header{
