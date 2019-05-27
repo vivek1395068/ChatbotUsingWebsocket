@@ -151,7 +151,7 @@ class ChatScreen extends React.Component{
 
     onUserClick(event){
         var clickedUser=this.props.allUsers.find((a)=>{return a._id===event.target.id});
-        if(event.target.tagName==="SPAN"){
+        if(event.target.tagName!=="DIV"){
             this.setState({
                 selectedUser:clickedUser,
                 targetUser:event.target.id,
