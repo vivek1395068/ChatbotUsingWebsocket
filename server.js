@@ -111,7 +111,8 @@ app.post("/fetchSpecificUser",(req,res,next)=>{
             res.send(err)
         }
         let foundUsers=users.filter((user)=>{
-            return user._username.includes("HK")
+            //return user._username.includes("HK");
+            return user._username.includes(req.body.keyword);
         })
         res.json(foundUsers);
     })
