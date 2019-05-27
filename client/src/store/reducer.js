@@ -44,7 +44,6 @@ const reducer=(state=initialState,action)=>{
         sessionStorage["myChatbotLoggedinUserName"]=action.loginDetails.username;
         sessionStorage["myChatbotLoggedinPassword"]=action.loginDetails.password;
         sessionStorage["myChatbotLoggedinType"]="signin";
-        console.log(sessionStorage,action.loginDetails);
         return {
             ...state,
             logInState:action.value.logInState,

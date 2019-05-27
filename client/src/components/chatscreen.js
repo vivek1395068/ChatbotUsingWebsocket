@@ -25,7 +25,6 @@ class ChatScreen extends React.Component{
         window.addEventListener("online",this.sendOnlineStatus.bind(this));
         window.addEventListener("offline",this.sendOnlineStatus.bind(this));
         this.props.fetchAllUsers();
-        console.log(sessionStorage)
         if(sessionStorage.myChatbotLoggedinUserName && sessionStorage.myChatbotLoggedinPassword && sessionStorage.myChatbotLoggedinType){
             this.props.fetchUserDetails({
                 username:sessionStorage.myChatbotLoggedinUserName,
@@ -151,25 +150,27 @@ class ChatScreen extends React.Component{
     }
 
     onUserClick(event){
-        console.log(event.target);
-        var clickedUser=this.props.allUsers.find((a)=>{return a._id===event.target.id})
-        this.setState({
-            selectedUser:clickedUser,
-            targetUser:event.target.id,
-            incomingChatObject:{
-                ...this.state.incomingChatObject,
-                [String(this.props.id)+String(clickedUser._id)]:undefined
-            }
-        },
-        ()=>{
-            if(this.connection){
-                this.connection.send(JSON.stringify({
-                    type:"checkOnlineStatus",
-                    targetUser:this.state.targetUser,
-                    sourceUser:this.props.id
-                }))
-            }
-        }); 
+        var clickedUser=this.props.allUsers.find((a)=>{return a._id===event.target.id});
+        if(event.target.tagName==="SPAN"){
+            this.setState({
+                selectedUser:clickedUser,
+                targetUser:event.target.id,
+                incomingChatObject:{
+                    ...this.state.incomingChatObject,
+                    [String(this.props.id)+String(clickedUser._id)]:undefined
+                }
+            },
+            ()=>{
+                if(this.connection){
+                    this.connection.send(JSON.stringify({
+                        type:"checkOnlineStatus",
+                        targetUser:this.state.targetUser,
+                        sourceUser:this.props.id
+                    }))
+                }
+            });
+        }
+         
     }
 
     onClickSearchUser(){
