@@ -198,13 +198,13 @@ class ChatScreen extends React.Component{
                     </span>
                     {/* <button style={{gridRow:"3/4",gridColumn:"3/4",border:"1px solid blue"}} onClick={this.onClickSearchUser.bind(this)}>Search</button> */}
                 </header>
-                <div id="userList" onClick={this.onUserClick.bind(this)}>
+                {this.props.username!=="unauthorized user" && this.props.username?<div id="userList" onClick={this.onUserClick.bind(this)}>
                     {
                         this.props.allUsers?this.props.allUsers.map((user)=>{
                             return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
                         }):""
                     }
-                </div>
+                </div>:""}
                 <HKloginPage></HKloginPage>
                 <div id="chatArea">
                     {this.state.chatObject[String(this.props.id)+String(this.state.targetUser)]?
