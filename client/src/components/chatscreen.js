@@ -193,13 +193,13 @@ class ChatScreen extends React.Component{
                         }
                     </div>:""}
                     <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"yellowgreen"}}>
-                        <span style={{fontSize:"24px",color:"blue",marginRight:"16px"}} className ="fa fa-user" aria-hidden="true" onClick={this.onLoginIconClick.bind(this)}>
+                        <span style={{fontSize:"24px",color:"blue",marginRight:"16px",cursor:"pointer"}} className ="fa fa-user" aria-hidden="true" onClick={this.onLoginIconClick.bind(this)}>
 
                         </span>
                     {
                         this.props.username!=="unauthorized user" && this.props.username ?
                         <React.Fragment><span>{this.props.username}</span><div style={{height:"8px",width:"8px",borderRadius:"50%",backgroundColor:this.state.loggedInOnlineStatus?"green":"red"}}></div></React.Fragment>:
-                        <span onClick={this.onLoginIconClick.bind(this)}>Login</span>
+                        <span style={{cursor:"pointer"}} onClick={this.onLoginIconClick.bind(this)}>Login</span>
                     }
                     </span>
                     {/* <input style={{gridRow:"2/3",gridColumn:"3/4"}}></input> */}
