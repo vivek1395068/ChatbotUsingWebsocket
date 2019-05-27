@@ -180,10 +180,10 @@ class ChatScreen extends React.Component{
         return(
             <React.Fragment>
                 <header>
-                <div id="imgDiv">
-                    <img src={myImg} alt="Vivek_pic"></img>
-                </div>
-                <span id="appDescription">Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span>
+                    <div id="imgDiv">
+                        <img src={myImg} alt="Vivek_pic"></img>
+                    </div>
+                    <span id="appDescription">Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span>
                     {this.props.username!=="unauthorized user" && this.props.username?<div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
                         {
                             this.props.allUsers?this.props.allUsers.map((user)=>{
