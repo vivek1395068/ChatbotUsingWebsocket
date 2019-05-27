@@ -282,6 +282,7 @@ const mapDispatchToProps=(dispatch)=>{
                       },
                     body:JSON.stringify(postData)
                 }).then(res=>res.json()).then((res)=>{
+                    console.log(res)
                     dispatch({type:"FETCH_FILTERED_USER",value:res});
                 }).catch((err)=>{
                     console.log(err)

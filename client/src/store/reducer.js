@@ -58,6 +58,7 @@ const reducer=(state=initialState,action)=>{
         }
     }
     if(action.type==="FETCH_FILTERED_USER"){
+        console.log(action.value)
         return{
             ...state,
             filteredUsers:action.value
