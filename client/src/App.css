@@ -136,4 +136,13 @@ header img{
     #chatInput{
         width: 88%
     }
+
+    #imgDiv{
+        display: none;
+    }
+
+    #appDescription{
+        display: none;
+    }
+    
   }
