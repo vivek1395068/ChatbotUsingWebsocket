@@ -137,12 +137,12 @@ header img{
         width: 88%
     }
 
-    /* #imgDiv{
-        display: none;
-    } */
-
-    #appDescription{
+    #imgDiv{
         display: none;
     }
+
+/*     #appDescription{
+        display: none;
+    } */
     
   }
