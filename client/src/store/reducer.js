@@ -40,7 +40,10 @@ const initialState={
 
 const reducer=(state=initialState,action)=>{
     if(action.type==="FETCH_USER"){
-        //setupWebsocketConnection(action.value)
+        //setupWebsocketConnection(action.value);
+        sessionStorage["myChatbotLoggedinUserName"]=action.loginDetails.username;
+        sessionStorage["myChatbotLoggedinPassword"]=action.loginDetails.password;
+        console.log(sessionStorage);
         return {
             ...state,
             logInState:action.value.logInState,

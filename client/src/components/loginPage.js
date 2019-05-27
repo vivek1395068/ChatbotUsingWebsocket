@@ -98,8 +98,10 @@ const mapDispatchToProps=(dispatch)=>{
               },
             body:JSON.stringify(postData)
         }).then(res=>res.json()).then((res)=>{
-            dispatch({type:"FETCH_USER",value:res})
-        });
+            dispatch({type:"FETCH_USER",value:res,loginDetails:postData})
+        }).catch((err)=>{
+            console.log(err)
+        })
       }
     }
 }
