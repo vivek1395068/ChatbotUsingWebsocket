@@ -223,9 +223,9 @@ class ChatScreen extends React.Component{
                         }):""
                     }
                     <div>
-                        <h1>
+                        <h6 style={{backgroundColor:"yellow"}}>
                             Search results
-                        </h1>
+                        </h6>
                         {
                             this.props.filteredUsers?this.props.filteredUsers.map((user)=>{
                                 return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
