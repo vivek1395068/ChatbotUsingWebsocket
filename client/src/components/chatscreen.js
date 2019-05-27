@@ -174,7 +174,15 @@ class ChatScreen extends React.Component{
     }
 
     onClickSearchUser(){
-        alert("search Functionality has not been implemented yet!")
+        var filterUsers=document.getElementById("filterUsers").value;
+        if(filterUsers){
+            this.props.fetchFilteredUser({
+                keyword: filterUsers
+            })
+        }else{
+            alert("please enter a keyword")
+        }
+        //alert("search Functionality has not been implemented yet!")
     }
     
     render(){
@@ -202,15 +210,19 @@ class ChatScreen extends React.Component{
                         <span style={{cursor:"pointer"}} onClick={this.onLoginIconClick.bind(this)}>Login</span>
                     }
                     </span>
-                    {/* <input style={{gridRow:"2/3",gridColumn:"3/4"}}></input> */}
+                    <input id="filterUsers" style={{gridRow:"2/3",gridColumn:"3/4"}}></input>
                     <span id="selectedUser">
                         <span>{this.state.selectedUser._username}</span>{this.state.selectedUser?<div style={{height:"8px",width:"8px",backgroundColor:this.state.targetUserLoggedInStatus?"green":"red",borderRadius:"50%"}}></div>:""}
                     </span>
-                    {/* <button style={{gridRow:"3/4",gridColumn:"3/4",border:"1px solid blue"}} onClick={this.onClickSearchUser.bind(this)}>Search</button> */}
+                    <button style={{gridRow:"3/4",gridColumn:"3/4",border:"1px solid blue"}} onClick={this.onClickSearchUser.bind(this)}>Search</button>
                 </header>
                 {this.props.username!=="unauthorized user" && this.props.username?<div id="userList" onClick={this.onUserClick.bind(this)}>
                     {
                         this.props.allUsers?this.props.allUsers.map((user)=>{
+                            return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
+                        }):""
+                    }{
+                        this.props.filteredUsers?this.props.filteredUsers.map((user)=>{
                             return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
                         }):""
                     }
@@ -234,7 +246,8 @@ const mapStateToProps =(state)=>{
       logInState:state.logInState,
       username:state.username,
       allUsers:state.allUsers,
-      id:state.id
+      id:state.id,
+      filteredUsers:state.filteredUsers
     }
 }
 
@@ -259,7 +272,21 @@ const mapDispatchToProps=(dispatch)=>{
             }).catch((err)=>{
                 console.log(err)
             })
-          }
+        },
+        fetchFilteredUser:(postData)=>{
+            fetch("/loginUser",{
+                //fetch("http://localhost:8081/loginUser",{
+                    method:"POST",
+                    headers:{
+                        'Content-Type': 'application/json'
+                      },
+                    body:JSON.stringify(postData)
+                }).then(res=>res.json()).then((res)=>{
+                    dispatch({type:"FETCH_FILTERED_USER",value:res});
+                }).catch((err)=>{
+                    console.log(err)
+                })
+        }
     }
 }
 

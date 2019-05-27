@@ -103,6 +103,18 @@ app.get("/fetchAllUsers",(req,res,next)=>{
         }
         res.json(users);
     })
+});
+
+app.post("/fetchSpecificUser",(req,res,next)=>{
+    db.users.find((err,users)=>{
+        if(err){
+            res.send(err)
+        }
+        let foundUsers=users.filter((user)=>{
+            return user._username.includes("HK")
+        })
+        res.json(foundUsers);
+    })
 })
 
 app.post("/loginUser",(req,res,next)=>{
