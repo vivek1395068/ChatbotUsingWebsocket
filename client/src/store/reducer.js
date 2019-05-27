@@ -43,7 +43,7 @@ const reducer=(state=initialState,action)=>{
         //setupWebsocketConnection(action.value);
         sessionStorage["myChatbotLoggedinUserName"]=action.loginDetails.username;
         sessionStorage["myChatbotLoggedinPassword"]=action.loginDetails.password;
-        sessionStorage["myChatbotLoggedinObj"]=action.loginDetails;
+        sessionStorage["myChatbotLoggedinType"]="signin";
         console.log(sessionStorage,action.loginDetails);
         return {
             ...state,

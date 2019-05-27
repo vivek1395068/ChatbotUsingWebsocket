@@ -25,6 +25,11 @@ class ChatScreen extends React.Component{
         window.addEventListener("online",this.sendOnlineStatus.bind(this));
         window.addEventListener("offline",this.sendOnlineStatus.bind(this));
         this.props.fetchAllUsers();
+        this.props.fetchUserDetails({
+            username:sessionStorage.myChatbotLoggedinUserName,
+            password:sessionStorage.myChatbotLoggedinPassword,
+            type:sessionStorage.myChatbotLoggedinType
+        })
     }
 
     componentWillReceiveProps(nextProps){
@@ -235,7 +240,21 @@ const mapDispatchToProps=(dispatch)=>{
             //fetch("http://localhost:8081/fetchAllUsers").then((res)=>res.json()).then((res)=>{
                 dispatch({type:"FETCH_ALLUSERS",value:res})
             })
-        }
+        },
+        fetchUserDetails:(postData)=>{
+            fetch("/loginUser",{
+            //fetch("http://localhost:8081/loginUser",{
+                method:"POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                  },
+                body:JSON.stringify(postData)
+            }).then(res=>res.json()).then((res)=>{
+                dispatch({type:"FETCH_USER",value:res,loginDetails:postData})
+            }).catch((err)=>{
+                console.log(err)
+            })
+          }
     }
 }
 
