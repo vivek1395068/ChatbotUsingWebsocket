@@ -274,7 +274,7 @@ const mapDispatchToProps=(dispatch)=>{
             })
         },
         fetchFilteredUser:(postData)=>{
-            fetch("/loginUser",{
+            fetch("/fetchSpecificUser",{
                 //fetch("http://localhost:8081/loginUser",{
                     method:"POST",
                     headers:{
