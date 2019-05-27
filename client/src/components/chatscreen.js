@@ -24,7 +24,7 @@ class ChatScreen extends React.Component{
     componentDidMount(){
         window.addEventListener("online",this.sendOnlineStatus.bind(this));
         window.addEventListener("offline",this.sendOnlineStatus.bind(this));
-        this.props.fetchAllUsers();debugger
+        this.props.fetchAllUsers();
         if(sessionStorage.myChatbotLoggedinUserName && sessionStorage.myChatbotLoggedinPassword && sessionStorage.myChatbotLoggedinType){
             this.props.fetchUserDetails({
                 username:sessionStorage.myChatbotLoggedinUserName,
