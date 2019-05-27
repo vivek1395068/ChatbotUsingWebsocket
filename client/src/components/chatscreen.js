@@ -175,13 +175,13 @@ class ChatScreen extends React.Component{
                     <img src={myImg} alt="Vivek_pic"></img>
                 </div>
                 <span style={{alignSelf:"center",justifySelf:"center",gridRow:"1/3",gridColumn:"2/3"}}>Simple ChatBot<br/> <span>By</span><br/> Vivek Kumar Singh</span> */}
-                    <div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
+                    {this.props.username!=="unauthorized user" && this.props.username?<div id="mobileviewUL" onClick={this.onUserClick.bind(this)}>
                         {
                             this.props.allUsers?this.props.allUsers.map((user)=>{
                                 return <span key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue",marginLeft:"8px"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></span>
                             }):""
                         }
-                    </div>
+                    </div>:""}
                     <span style={{gridRow:"1/2",gridColumn:"3/4",display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"yellowgreen"}}>
                         <span style={{fontSize:"24px",color:"blue",marginRight:"16px"}} className ="fa fa-user" aria-hidden="true" onClick={this.onLoginIconClick.bind(this)}>
 
