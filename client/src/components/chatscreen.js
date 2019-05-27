@@ -221,11 +221,17 @@ class ChatScreen extends React.Component{
                         this.props.allUsers?this.props.allUsers.map((user)=>{
                             return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
                         }):""
-                    }{
-                        this.props.filteredUsers?this.props.filteredUsers.map((user)=>{
-                            return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
-                        }):""
                     }
+                    <div>
+                        <h1>
+                            Search results
+                        </h1>
+                        {
+                            this.props.filteredUsers?this.props.filteredUsers.map((user)=>{
+                                return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
+                            }):""
+                        }
+                    </div>
                 </div>:""}
                 <HKloginPage></HKloginPage>
                 <div id="chatArea">
