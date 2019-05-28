@@ -218,20 +218,18 @@ class ChatScreen extends React.Component{
                 </header>
                 {this.props.username!=="unauthorized user" && this.props.username?<div id="userList" onClick={this.onUserClick.bind(this)}>
                     {
-                        this.props.allUsers?this.props.allUsers.map((user)=>{
+                        /* this.props.allUsers?this.props.allUsers.map((user)=>{
                             return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
-                        }):""
+                        }):"" */
                     }
-                    <div>
-                        <h6 style={{backgroundColor:"yellow"}}>
+                        <h4 style={{backgroundColor:"yellow"}}>
                             Search results
-                        </h6>
+                        </h4>
                         {
                             this.props.filteredUsers?this.props.filteredUsers.map((user)=>{
                                 return <p key={user._id} id={user._id} style={{cursor:"pointer",textDecoration:"underline",color:"blue"}}>{user._username} <span style={{float:"right",marginRight:"8%"}}>{this.state.incomingChatObject[String(this.props.id)+String(user._id)]?this.state.incomingChatObject[String(this.props.id)+String(user._id)].length:""}</span></p>
                             }):""
                         }
-                    </div>
                 </div>:""}
                 <HKloginPage></HKloginPage>
                 <div id="chatArea">
